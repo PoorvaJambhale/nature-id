@@ -6,9 +6,10 @@ interface ImageCaptureProps {
   onImageCaptured: (base64: string) => void;
   isLoading: boolean;
   resetKey?: number;
+  hideIdentifyButton?: boolean;
 }
 
-const ImageCapture = ({ onImageCaptured, isLoading, resetKey }: ImageCaptureProps) => {
+const ImageCapture = ({ onImageCaptured, isLoading, resetKey, hideIdentifyButton }: ImageCaptureProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -143,19 +144,21 @@ const ImageCapture = ({ onImageCaptured, isLoading, resetKey }: ImageCaptureProp
               <X className="w-4 h-4 text-background" />
             </button>
           </div>
-          <Button
-            variant="nature"
-            size="lg"
-            className="w-full text-base"
-            onClick={handleIdentify}
-            disabled={isLoading}
-          >
-            {isLoading ? (
-              <><Loader2 className="w-5 h-5 mr-2 animate-spin" /> Identifying...</>
-            ) : (
-              "What's This? 🔍"
-            )}
-          </Button>
+          {!hideIdentifyButton && (
+            <Button
+              variant="nature"
+              size="lg"
+              className="w-full text-base"
+              onClick={handleIdentify}
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <><Loader2 className="w-5 h-5 mr-2 animate-spin" /> Identifying...</>
+              ) : (
+                "What's This? 🔍"
+              )}
+            </Button>
+          )}
         </div>
       )}
     </div>

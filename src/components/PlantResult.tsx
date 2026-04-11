@@ -1,4 +1,4 @@
-import { Flower2, Droplets, Sun, Thermometer, Globe, Calendar, Apple, Palette } from "lucide-react";
+import { Flower2, Droplets, Sun, Thermometer, Globe, Calendar, Apple, Palette, PawPrint } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export interface PlantData {
@@ -13,6 +13,7 @@ export interface PlantData {
   distribution: string;
   flowerColors: string;
   edibleFruits: string;
+  petFriendly: string;
 }
 
 const InfoCard = ({ icon: Icon, title, children }: { icon: React.ElementType; title: string; children: React.ReactNode }) => (
@@ -78,6 +79,10 @@ const PlantResult = ({ data }: { data: PlantData }) => {
 
         <InfoCard icon={Apple} title="Edible Fruits">
           <p>{data.edibleFruits}</p>
+        </InfoCard>
+
+        <InfoCard icon={PawPrint} title="Pet Friendly?">
+          <p>{data.petFriendly}</p>
         </InfoCard>
       </div>
     </div>
