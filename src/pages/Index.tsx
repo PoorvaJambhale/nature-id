@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Leaf, Bird } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import ImageCapture from "@/components/ImageCapture";
@@ -68,6 +69,14 @@ const Index = () => {
 
         {result?.type === "bird" && <BirdResult data={result.data} />}
         {result?.type === "plant" && <PlantResult data={result.data} />}
+
+        {result && (
+          <div className="text-center animate-fade-in">
+            <Button variant="nature" size="lg" onClick={() => setResult(null)}>
+              Identify Another Species
+            </Button>
+          </div>
+        )}
 
         {!result && !isLoading && (
           <div className="text-center text-muted-foreground text-sm animate-fade-in">
