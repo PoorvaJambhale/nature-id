@@ -16,8 +16,8 @@ export interface PlantData {
   petFriendly: string;
 }
 
-const InfoCard = ({ icon: Icon, title, children }: { icon: React.ElementType; title: string; children: React.ReactNode }) => (
-  <Card className="glass-card">
+const InfoCard = ({ icon: Icon, title, children, delay = 0 }: { icon: React.ElementType; title: string; children: React.ReactNode; delay?: number }) => (
+  <Card className="glass-card animate-fade-in opacity-0" style={{ animationDelay: `${delay}ms`, animationFillMode: "forwards" }}>
     <CardHeader className="pb-2">
       <CardTitle className="text-base flex items-center gap-2 font-sans">
         <Icon className="w-4 h-4 text-primary" /> {title}
