@@ -19,13 +19,8 @@ const BirdResult = ({ data }: { data: BirdData }) => {
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <Card className="glass-card">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-base flex items-center gap-2 font-sans">
-              <Feather className="w-4 h-4 text-primary" /> Facts
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
+        {[
+          { icon: Feather, title: "Facts", content: (
             <ul className="space-y-2 text-sm text-muted-foreground">
               {data.facts.map((fact, i) => (
                 <li key={i} className="flex gap-2">
@@ -34,41 +29,24 @@ const BirdResult = ({ data }: { data: BirdData }) => {
                 </li>
               ))}
             </ul>
-          </CardContent>
-        </Card>
-
-        <Card className="glass-card">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-base flex items-center gap-2 font-sans">
-              <MapPin className="w-4 h-4 text-primary" /> Habitat
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">{data.habitat}</p>
-          </CardContent>
-        </Card>
-
-        <Card className="glass-card">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-base flex items-center gap-2 font-sans">
-              <Globe className="w-4 h-4 text-primary" /> Distribution
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">{data.distribution}</p>
-          </CardContent>
-        </Card>
-
-        <Card className="glass-card">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-base flex items-center gap-2 font-sans">
-              <Navigation className="w-4 h-4 text-primary" /> Migration
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">{data.migration}</p>
-          </CardContent>
-        </Card>
+          )},
+          { icon: MapPin, title: "Habitat", content: <p className="text-sm text-muted-foreground">{data.habitat}</p> },
+          { icon: Globe, title: "Distribution", content: <p className="text-sm text-muted-foreground">{data.distribution}</p> },
+          { icon: Navigation, title: "Migration", content: <p className="text-sm text-muted-foreground">{data.migration}</p> },
+        ].map((card, index) => (
+          <Card
+            key={card.title}
+            className="glass-card animate-fade-in opacity-0"
+            style={{ animationDelay: `${index * 150}ms`, animationFillMode: "forwards" }}
+          >
+            <CardHeader className="pb-2">
+              <CardTitle className="text-base flex items-center gap-2 font-sans">
+                <card.icon className="w-4 h-4 text-primary" /> {card.title}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>{card.content}</CardContent>
+          </Card>
+        ))}
       </div>
     </div>
   );

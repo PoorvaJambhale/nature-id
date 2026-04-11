@@ -16,8 +16,8 @@ export interface PlantData {
   petFriendly: string;
 }
 
-const InfoCard = ({ icon: Icon, title, children }: { icon: React.ElementType; title: string; children: React.ReactNode }) => (
-  <Card className="glass-card">
+const InfoCard = ({ icon: Icon, title, children, delay = 0 }: { icon: React.ElementType; title: string; children: React.ReactNode; delay?: number }) => (
+  <Card className="glass-card animate-fade-in opacity-0" style={{ animationDelay: `${delay}ms`, animationFillMode: "forwards" }}>
     <CardHeader className="pb-2">
       <CardTitle className="text-base flex items-center gap-2 font-sans">
         <Icon className="w-4 h-4 text-primary" /> {title}
@@ -38,7 +38,7 @@ const PlantResult = ({ data }: { data: PlantData }) => {
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <InfoCard icon={Flower2} title="Facts">
+        <InfoCard icon={Flower2} title="Facts" delay={0}>
           <ul className="space-y-2">
             {data.facts.map((fact, i) => (
               <li key={i} className="flex gap-2">
@@ -49,39 +49,39 @@ const PlantResult = ({ data }: { data: PlantData }) => {
           </ul>
         </InfoCard>
 
-        <InfoCard icon={Flower2} title="Planting">
+        <InfoCard icon={Flower2} title="Planting" delay={150}>
           <p>{data.plantingPreference}</p>
         </InfoCard>
 
-        <InfoCard icon={Droplets} title="Watering">
+        <InfoCard icon={Droplets} title="Watering" delay={300}>
           <p>{data.watering}</p>
         </InfoCard>
 
-        <InfoCard icon={Sun} title="Sunlight">
+        <InfoCard icon={Sun} title="Sunlight" delay={450}>
           <p>{data.sunlight}</p>
         </InfoCard>
 
-        <InfoCard icon={Thermometer} title="Temperature">
+        <InfoCard icon={Thermometer} title="Temperature" delay={600}>
           <p>{data.temperature}</p>
         </InfoCard>
 
-        <InfoCard icon={Calendar} title="Best Time to Plant">
+        <InfoCard icon={Calendar} title="Best Time to Plant" delay={750}>
           <p>{data.bestTimePlant}</p>
         </InfoCard>
 
-        <InfoCard icon={Globe} title="Where Found">
+        <InfoCard icon={Globe} title="Where Found" delay={900}>
           <p>{data.distribution}</p>
         </InfoCard>
 
-        <InfoCard icon={Palette} title="Flower Colors">
+        <InfoCard icon={Palette} title="Flower Colors" delay={1050}>
           <p>{data.flowerColors}</p>
         </InfoCard>
 
-        <InfoCard icon={Apple} title="Edible Fruits">
+        <InfoCard icon={Apple} title="Edible Fruits" delay={1200}>
           <p>{data.edibleFruits}</p>
         </InfoCard>
 
-        <InfoCard icon={PawPrint} title="Pet Friendly?">
+        <InfoCard icon={PawPrint} title="Pet Friendly?" delay={1350}>
           <p>{data.petFriendly}</p>
         </InfoCard>
       </div>

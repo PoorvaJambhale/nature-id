@@ -77,6 +77,7 @@ If you cannot identify the species or it's neither a bird nor a plant, respond w
         },
         body: JSON.stringify({
           model: "google/gemini-2.5-flash",
+          temperature: 0,
           messages: [
             { role: "system", content: systemPrompt },
             {
