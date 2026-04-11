@@ -77,7 +77,7 @@ const Index = () => {
               setResult(null);
               setResetKey(k => k + 1);
             }}>
-              🔄 Try Another One!
+              Try Another One!
             </Button>
           </div>
         )}
