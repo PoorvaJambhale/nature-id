@@ -1,19 +1,27 @@
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import { Camera, Upload, X, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface ImageCaptureProps {
   onImageCaptured: (base64: string) => void;
   isLoading: boolean;
+  resetKey?: number;
 }
 
-const ImageCapture = ({ onImageCaptured, isLoading }: ImageCaptureProps) => {
+const ImageCapture = ({ onImageCaptured, isLoading, resetKey }: ImageCaptureProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [cameraActive, setCameraActive] = useState(false);
   const [stream, setStream] = useState<MediaStream | null>(null);
+
+  // Reset preview when resetKey changes
+  useEffect(() => {
+    setPreview(null);
+    setCameraActive(false);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  }, [resetKey]);
 
   const handleFileUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -145,7 +153,7 @@ const ImageCapture = ({ onImageCaptured, isLoading }: ImageCaptureProps) => {
             {isLoading ? (
               <><Loader2 className="w-5 h-5 mr-2 animate-spin" /> Identifying...</>
             ) : (
-              "Identify Species"
+              "What's This? 🔍"
             )}
           </Button>
         </div>
