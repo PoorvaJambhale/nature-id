@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 export interface PlantData {
   commonName: string;
   scientificName: string;
+  lifespan: string;
   plantingPreference: string;
   watering: string;
   sunlight: string;
@@ -35,6 +36,11 @@ const PlantResult = ({ data }: { data: PlantData }) => {
       <div className="text-center space-y-1">
         <h2 className="text-2xl sm:text-3xl font-serif text-foreground">{data.commonName}</h2>
         <p className="text-muted-foreground italic text-base sm:text-lg">{data.scientificName}</p>
+        {data.lifespan && (
+          <span className="inline-block mt-1 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
+            {data.lifespan}
+          </span>
+        )}
       </div>
 
       <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2">
