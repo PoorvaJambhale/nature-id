@@ -16,6 +16,7 @@ type IdentificationResult =
 const Index = () => {
   const [result, setResult] = useState<IdentificationResult>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [resetKey, setResetKey] = useState(0);
   const { toast } = useToast();
 
   const handleIdentify = async (base64: string) => {
@@ -65,15 +66,18 @@ const Index = () => {
 
       {/* Main */}
       <main className="px-4 py-10 max-w-2xl mx-auto space-y-10">
-        <ImageCapture onImageCaptured={handleIdentify} isLoading={isLoading} />
+        <ImageCapture onImageCaptured={handleIdentify} isLoading={isLoading} resetKey={resetKey} />
 
         {result?.type === "bird" && <BirdResult data={result.data} />}
         {result?.type === "plant" && <PlantResult data={result.data} />}
 
         {result && (
           <div className="text-center animate-fade-in">
-            <Button variant="nature" size="lg" onClick={() => setResult(null)}>
-              Identify Another Species
+            <Button variant="nature" size="lg" onClick={() => {
+              setResult(null);
+              setResetKey(k => k + 1);
+            }}>
+              🔄 Try Another One!
             </Button>
           </div>
         )}
