@@ -81,12 +81,12 @@ const ImageCapture = ({ onImageCaptured, isLoading, resetKey, hideIdentifyButton
   };
 
   return (
-    <div className="w-full max-w-lg mx-auto space-y-6">
+    <div className="w-full max-w-lg mx-auto space-y-4 sm:space-y-6">
       {!preview && !cameraActive && (
-        <div className="grid grid-cols-2 gap-4 animate-fade-in">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 animate-fade-in">
           <button
             onClick={() => fileInputRef.current?.click()}
-            className="group flex flex-col items-center justify-center gap-3 p-8 rounded-xl glass-card hover:border-primary/40 transition-all duration-300 cursor-pointer"
+            className="group flex flex-col items-center justify-center gap-2 sm:gap-3 p-6 sm:p-8 rounded-xl glass-card hover:border-primary/40 transition-all duration-300 cursor-pointer"
           >
             <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
               <Upload className="w-6 h-6 text-primary" />
@@ -95,7 +95,7 @@ const ImageCapture = ({ onImageCaptured, isLoading, resetKey, hideIdentifyButton
           </button>
           <button
             onClick={startCamera}
-            className="group flex flex-col items-center justify-center gap-3 p-8 rounded-xl glass-card hover:border-primary/40 transition-all duration-300 cursor-pointer"
+            className="group flex flex-col items-center justify-center gap-2 sm:gap-3 p-6 sm:p-8 rounded-xl glass-card hover:border-primary/40 transition-all duration-300 cursor-pointer"
           >
             <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
               <Camera className="w-6 h-6 text-accent" />
