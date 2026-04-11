@@ -12,13 +12,13 @@ export interface BirdData {
 
 const BirdResult = ({ data }: { data: BirdData }) => {
   return (
-    <div className="w-full max-w-2xl mx-auto space-y-4 animate-fade-in">
+    <div className="w-full max-w-2xl mx-auto space-y-3 sm:space-y-4 animate-fade-in">
       <div className="text-center space-y-1">
-        <h2 className="text-3xl font-serif text-foreground">{data.commonName}</h2>
-        <p className="text-muted-foreground italic text-lg">{data.scientificName}</p>
+        <h2 className="text-2xl sm:text-3xl font-serif text-foreground">{data.commonName}</h2>
+        <p className="text-muted-foreground italic text-base sm:text-lg">{data.scientificName}</p>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2">
         {[
           { icon: Feather, title: "Facts", content: (
             <ul className="space-y-2 text-sm text-muted-foreground">
