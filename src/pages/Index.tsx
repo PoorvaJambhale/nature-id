@@ -69,6 +69,14 @@ const Index = () => {
         {result?.type === "bird" && <BirdResult data={result.data} />}
         {result?.type === "plant" && <PlantResult data={result.data} />}
 
+        {result && (
+          <div className="text-center animate-fade-in">
+            <Button variant="nature" size="lg" onClick={() => setResult(null)}>
+              Identify Another Species
+            </Button>
+          </div>
+        )}
+
         {!result && !isLoading && (
           <div className="text-center text-muted-foreground text-sm animate-fade-in">
             <p>Upload or take a photo of a bird or plant to get started</p>
