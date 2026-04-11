@@ -66,7 +66,7 @@ const Index = () => {
 
       {/* Main */}
       <main className="px-4 py-10 max-w-2xl mx-auto space-y-10">
-        <ImageCapture onImageCaptured={handleIdentify} isLoading={isLoading} resetKey={resetKey} />
+        <ImageCapture onImageCaptured={handleIdentify} isLoading={isLoading} resetKey={resetKey} hideIdentifyButton={!!result} />
 
         {result?.type === "bird" && <BirdResult data={result.data} />}
         {result?.type === "plant" && <PlantResult data={result.data} />}

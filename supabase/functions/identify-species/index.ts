@@ -56,7 +56,8 @@ If it's a PLANT, respond with:
     "bestTimePlant": "best time to plant",
     "distribution": "where commonly found in the world",
     "flowerColors": "typical flower colors",
-    "edibleFruits": "whether fruits can be consumed and details"
+    "edibleFruits": "whether fruits can be consumed and details",
+    "petFriendly": "Is this plant safe for common pets like dogs, cats, and birds? Mention any toxicity risks in kid-friendly language."
   }
 }
 
