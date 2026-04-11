@@ -48,6 +48,7 @@ If it's a PLANT, respond with:
   "data": {
     "commonName": "...",
     "scientificName": "...",
+    "lifespan": "Annual or Perennial (one word)",
     "plantingPreference": "pot or in-ground preferences",
     "watering": "watering needs",
     "sunlight": "sunlight requirements",
