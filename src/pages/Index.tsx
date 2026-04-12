@@ -6,6 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 import ImageCapture from "@/components/ImageCapture";
 import BirdResult, { type BirdData } from "@/components/BirdResult";
 import PlantResult, { type PlantData } from "@/components/PlantResult";
+import UnknownResult from "@/components/UnknownResult";
 
 type IdentificationResult =
   | { type: "bird"; data: BirdData }
