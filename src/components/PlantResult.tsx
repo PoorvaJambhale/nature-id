@@ -1,5 +1,6 @@
 import { Flower2, Droplets, Sun, Thermometer, Globe, Calendar, Apple, Palette, PawPrint } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import CardCarousel from "@/components/CardCarousel";
 
 export interface PlantData {
   commonName: string;
@@ -17,8 +18,8 @@ export interface PlantData {
   petFriendly: string;
 }
 
-const InfoCard = ({ icon: Icon, title, children, delay = 0 }: { icon: React.ElementType; title: string; children: React.ReactNode; delay?: number }) => (
-  <Card className="glass-card animate-fade-in opacity-0" style={{ animationDelay: `${delay}ms`, animationFillMode: "forwards" }}>
+const InfoCard = ({ icon: Icon, title, children }: { icon: React.ElementType; title: string; children: React.ReactNode }) => (
+  <Card className="glass-card animate-fade-in">
     <CardHeader className="pb-2">
       <CardTitle className="text-base flex items-center gap-2 font-sans">
         <Icon className="w-4 h-4 text-primary" /> {title}
@@ -31,8 +32,30 @@ const InfoCard = ({ icon: Icon, title, children, delay = 0 }: { icon: React.Elem
 );
 
 const PlantResult = ({ data }: { data: PlantData }) => {
+  const cards = [
+    <InfoCard key="facts" icon={Flower2} title="Facts">
+      <ul className="space-y-2">
+        {data.facts.map((fact, i) => (
+          <li key={i} className="flex gap-2">
+            <span className="text-accent font-bold">•</span>
+            {fact}
+          </li>
+        ))}
+      </ul>
+    </InfoCard>,
+    <InfoCard key="planting" icon={Flower2} title="Planting"><p>{data.plantingPreference}</p></InfoCard>,
+    <InfoCard key="watering" icon={Droplets} title="Watering"><p>{data.watering}</p></InfoCard>,
+    <InfoCard key="sunlight" icon={Sun} title="Sunlight"><p>{data.sunlight}</p></InfoCard>,
+    <InfoCard key="temperature" icon={Thermometer} title="Temperature"><p>{data.temperature}</p></InfoCard>,
+    <InfoCard key="besttime" icon={Calendar} title="Best Time to Plant"><p>{data.bestTimePlant}</p></InfoCard>,
+    <InfoCard key="distribution" icon={Globe} title="Where Found"><p>{data.distribution}</p></InfoCard>,
+    <InfoCard key="colors" icon={Palette} title="Flower Colors"><p>{data.flowerColors}</p></InfoCard>,
+    <InfoCard key="edible" icon={Apple} title="Edible Fruits"><p>{data.edibleFruits}</p></InfoCard>,
+    <InfoCard key="petfriendly" icon={PawPrint} title="Pet Friendly?"><p>{data.petFriendly}</p></InfoCard>,
+  ];
+
   return (
-    <div className="w-full max-w-2xl mx-auto space-y-3 sm:space-y-4 animate-fade-in">
+    <div className="w-full max-w-2xl mx-auto space-y-4 animate-fade-in">
       <div className="text-center space-y-1">
         <h2 className="text-2xl sm:text-3xl font-serif text-foreground">{data.commonName}</h2>
         <p className="text-muted-foreground italic text-base sm:text-lg">{data.scientificName}</p>
@@ -42,55 +65,7 @@ const PlantResult = ({ data }: { data: PlantData }) => {
           </span>
         )}
       </div>
-
-      <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2">
-        <InfoCard icon={Flower2} title="Facts" delay={0}>
-          <ul className="space-y-2">
-            {data.facts.map((fact, i) => (
-              <li key={i} className="flex gap-2">
-                <span className="text-accent font-bold">•</span>
-                {fact}
-              </li>
-            ))}
-          </ul>
-        </InfoCard>
-
-        <InfoCard icon={Flower2} title="Planting" delay={150}>
-          <p>{data.plantingPreference}</p>
-        </InfoCard>
-
-        <InfoCard icon={Droplets} title="Watering" delay={300}>
-          <p>{data.watering}</p>
-        </InfoCard>
-
-        <InfoCard icon={Sun} title="Sunlight" delay={450}>
-          <p>{data.sunlight}</p>
-        </InfoCard>
-
-        <InfoCard icon={Thermometer} title="Temperature" delay={600}>
-          <p>{data.temperature}</p>
-        </InfoCard>
-
-        <InfoCard icon={Calendar} title="Best Time to Plant" delay={750}>
-          <p>{data.bestTimePlant}</p>
-        </InfoCard>
-
-        <InfoCard icon={Globe} title="Where Found" delay={900}>
-          <p>{data.distribution}</p>
-        </InfoCard>
-
-        <InfoCard icon={Palette} title="Flower Colors" delay={1050}>
-          <p>{data.flowerColors}</p>
-        </InfoCard>
-
-        <InfoCard icon={Apple} title="Edible Fruits" delay={1200}>
-          <p>{data.edibleFruits}</p>
-        </InfoCard>
-
-        <InfoCard icon={PawPrint} title="Pet Friendly?" delay={1350}>
-          <p>{data.petFriendly}</p>
-        </InfoCard>
-      </div>
+      <CardCarousel>{cards}</CardCarousel>
     </div>
   );
 };
