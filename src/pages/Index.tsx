@@ -6,6 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 import ImageCapture from "@/components/ImageCapture";
 import BirdResult, { type BirdData } from "@/components/BirdResult";
 import PlantResult, { type PlantData } from "@/components/PlantResult";
+import UnknownResult from "@/components/UnknownResult";
 
 type IdentificationResult =
   | { type: "bird"; data: BirdData }
@@ -30,11 +31,7 @@ const Index = () => {
       if (error) throw error;
 
       if (data.type === "unknown") {
-        toast({
-          title: "Could not identify",
-          description: data.data.message,
-          variant: "destructive",
-        });
+        setResult(data as IdentificationResult);
       } else {
         setResult(data as IdentificationResult);
       }
@@ -70,6 +67,7 @@ const Index = () => {
 
         {result?.type === "bird" && <BirdResult data={result.data} />}
         {result?.type === "plant" && <PlantResult data={result.data} />}
+        {result?.type === "unknown" && <UnknownResult message={result.data.message} />}
 
         {result && (
           <div className="text-center animate-fade-in">
