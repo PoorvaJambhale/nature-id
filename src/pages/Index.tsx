@@ -67,6 +67,7 @@ const Index = () => {
 
         {result?.type === "bird" && <BirdResult data={result.data} />}
         {result?.type === "plant" && <PlantResult data={result.data} />}
+        {result?.type === "unknown" && <UnknownResult message={result.data.message} />}
 
         {result && (
           <div className="text-center animate-fade-in">
