@@ -30,14 +30,10 @@ const Index = () => {
 
       if (error) throw error;
 
-      if (data.type === "unknown") {
-        setResult(data as IdentificationResult);
-      } else {
-        setResult(data as IdentificationResult);
-      }
+      setResult(data as IdentificationResult);
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : "Identification failed";
-      toast({ title: "Error", description: message, variant: "destructive" });
+      setResult({ type: "unknown", data: { message: message || "We couldn't figure out what this is. Try uploading a clearer photo!" } });
     } finally {
       setIsLoading(false);
     }
