@@ -92,12 +92,17 @@ export default {
           from: { opacity: "0", transform: "scale(0.95)" },
           to: { opacity: "1", transform: "scale(1)" },
         },
+        "breathe": {
+          "0%, 100%": { opacity: "0.4", transform: "scale(0.9)" },
+          "50%": { opacity: "1", transform: "scale(1.1)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.5s ease-out forwards",
         "scale-in": "scale-in 0.3s ease-out forwards",
+        "breathe": "breathe 2s ease-in-out infinite",
       },
     },
   },
