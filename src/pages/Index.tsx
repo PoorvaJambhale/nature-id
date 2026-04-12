@@ -31,11 +31,7 @@ const Index = () => {
       if (error) throw error;
 
       if (data.type === "unknown") {
-        toast({
-          title: "Could not identify",
-          description: data.data.message,
-          variant: "destructive",
-        });
+        setResult(data as IdentificationResult);
       } else {
         setResult(data as IdentificationResult);
       }
